@@ -1,0 +1,77 @@
+.about-sec { padding: 80px 0 100px; overflow: hidden; background: var(--white); }
+
+/* Giant title */
+.about-title-row { position: relative; }
+.about-big-wrap { padding: 0 70px; position: relative; z-index: 2; }
+.about-big {
+  font-family: var(--font-d);
+  font-size: clamp(90px, 14vw, 195px);
+  font-weight: 300; color: var(--black);
+  line-height: 0.88; letter-spacing: -5px;
+}
+.about-big-2 { padding-left: 4vw; }
+.ab-w { overflow: hidden; display: block; }
+.ab-w span { display: inline-block; }
+
+/* Images positioned over the title */
+.about-imgs-wrap {
+  position: absolute; top: 0; right: 0;
+  width: 58%; height: 100%;
+  display: flex; gap: 6px; z-index: 3;
+}
+.ab-img-main {
+  flex: 1; height: 100%; min-height: 300px;
+  object-fit: cover; display: block;
+}
+.ab-img-sub {
+  width: 42%; object-fit: cover; display: block;
+}
+
+/* Content row */
+.about-content {
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 80px; padding: 60px 70px 0;
+  align-items: center;
+}
+.about-text p { font-size: 16px; line-height: 1.85; color: #555; font-weight: 300; }
+.about-text p + p { margin-top: 20px; }
+.about-btns { display: flex; align-items: center; gap: 28px; margin-top: 42px; }
+.btn-play {
+  display: flex; align-items: center; gap: 14px;
+  background: none; border: none; color: var(--black);
+  font-size: 14px; font-weight: 400; font-family: var(--font-b);
+  transition: opacity .3s;
+}
+.btn-play:hover { opacity: .6; }
+.play-ring {
+  width: 50px; height: 50px; border-radius: 50%;
+  border: 1.5px solid var(--black);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .35s;
+}
+.play-ring i { font-size: 11px; margin-left: 3px; }
+.btn-play:hover .play-ring { background: var(--black); color: var(--white); }
+.about-exp { text-align: left; }
+.exp-num {
+  font-family: var(--font-d);
+  font-size: clamp(80px, 10vw, 120px);
+  font-weight: 300; line-height: 1;
+  letter-spacing: -3px; color: var(--black);
+}
+.exp-lbl { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-top: 10px; line-height: 1.6; }
+
+/* GSAP initial states */
+.r-up   { opacity: 0; transform: translateY(50px); }
+.r-right{ opacity: 0; transform: translateX(50px); }
+
+@media(max-width:1100px){
+  .about-big { font-size: 80px; letter-spacing: -3px; }
+  .about-big-wrap { padding: 0 36px; }
+  .about-imgs-wrap { width: 50%; }
+  .about-content { padding: 40px 36px 0; grid-template-columns: 1fr; gap: 40px; }
+}
+@media(max-width:768px){
+  .about-big { font-size: 60px; letter-spacing: -2px; }
+  .about-imgs-wrap { position: relative; width: 100%; height: 260px; margin-top: 20px; }
+  .ab-img-main { min-height: unset; }
+}
