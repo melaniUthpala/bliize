@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Sections.css';
-import testiBg from '../../assets/homeinbt/testimonial.jpg';
+import testiBg from '../assets/homeinbt/lighthome.webp';  
 
 /* ══════════════════════════════════════════
    TESTIMONIALS — Dark overlay, big serif quote
