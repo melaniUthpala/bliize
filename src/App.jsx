@@ -11,8 +11,7 @@ import Services from './components/Services';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
 import Team from './components/Team';
-import Partners from './components/Partners';
-import Blog from './components/Blog';
+import BrandSection from './components/brandSection';
 
 import { Footer } from './components/Footer'; // updated
 
@@ -140,8 +139,7 @@ export default function App() {
         <Stats />
         <Testimonials />
         <Team />
-        <Partners />
-        <Blog />
+       <BrandSection />
       </main>
 
       <Footer />

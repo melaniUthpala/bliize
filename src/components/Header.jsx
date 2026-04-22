@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NAV_LINKS } from '../data/siteData';
 import './Header.css';
 
@@ -22,9 +22,21 @@ function Logo({ dark = false }) {
 
 function EnvatoMarketLogo() {
   return (
-    <svg fill="none" viewBox="0 0 1894 257" xmlns="http://www.w3.org/2000/svg" className="envato-svg">
+    <svg
+      fill="none"
+      height="257"
+      viewBox="0 0 1894 257"
+      width="1894"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ height: '18px', width: 'auto' }}
+    >
       <g fill="#fff5ed">
-        <path d="m293.781 50.8298c38.37 0 75.87 22.62 75.87 73.0102 0 4-.22 10.2-.66 14.56-.1 1-.95 1.76-1.96 1.76h-107.62c3.15 18.04 15.75 29.78 35.5 29.78 13.1 0 21.46-7.24 26.01-15.9.57-1.09 1.81-1.66 3.01-1.4l40.24 8.77c1.23.27 1.88 1.59 1.38 2.74-9.41 21.31-30.81 42.43-70.92 42.43-52.68 0-80.74-34.36-80.74-77.88 0-43.5202 29.2-77.8802 79.88-77.8802zm30.92 61.8502c-2-17.1802-13.46-26.3402-30.06-26.3402-21.76 0-30.92 11.17-34.36 26.3402z"/><path d="m383.4 200.04v-142.6502c0-1.09.88-1.97 1.97-1.97h41.87c1.09 0 1.97.88 1.97 1.97v16.9301c10.02-15.75 24.91-23.4801 44.09-23.4801 28.06 0 52.11 19.18 52.11 62.1302v87.07c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97v-80.49c0-19.18-10.02-29.7801-24.62-29.7801-15.75 0-25.77 10.3101-25.77 33.7901v76.48c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97z"/><path d="m528.22 55.4098h44.41c.87 0 1.63.57 1.89 1.4l33.36 110.5502 33.36-110.5502c.25-.83 1.02-1.4 1.89-1.4h44.41c1.36 0 2.32 1.35 1.85 2.64l-51.08 142.1302c-.39 1.09-1.43 1.83-2.6 1.83h-55.67c-1.16 0-2.2-.73-2.6-1.83l-51.08-142.1302c-.46-1.28.49-2.64 1.85-2.64z"/><path d="m786.541 200.04v-22.37c-7.16 14.89-23.19 28.92-48.1 28.92-28.92 0-50.39-18.32-50.39-44.09 0-27.2 18.04-47.53 57.55-47.53h22.91c12.6 0 16.03-9.16 14.89-15.1701-1.72-10.31-10.88-15.75-23.76-15.75-16.27 0-26.12 8.99-27.36 21.3701-.11 1.13-1.15 1.94-2.27 1.75l-38.84-6.47c-1.08-.18-1.82-1.2102-1.62-2.2802 6.33-33.79 38.37-47.58 71.25-47.58s69.29 8.02 69.29 68.7202v80.49c0 1.09-.88 1.97-1.97 1.97h-39.58c-1.09 0-1.97-.88-1.97-1.97zm-34.64-26.66c18.32 0 30.92-13.74 32.35-30.92h-27.77c-16.89 0-22.91 6.87-22.62 16.32.29 10.02 8.3 14.6 18.04 14.6z"/><path d="m836.94 90.0898v-32.71c0-1.09.88-1.97 1.97-1.97h16.35c7.59 0 13.74-6.15 13.74-13.74v-25.52c0-1.09.88-1.97 1.97-1.97h37.29c1.09 0 1.97.88 1.97 1.97v39.26h30.101c1.09 0 1.969.88 1.969 1.97v32.71c0 1.09-.879 1.97-1.969 1.97h-30.101v52.9702c0 17.26 14.67 24.29 29.99 18.85 1.02-.36 2.08.41 2.08 1.48v34.51c0 1.27-.859 2.39-2.089 2.68-3.96.94-9.451 1.75-15.941 1.75-35.5 0-59.84-12.03-59.84-63.56v-48.6702h-25.52c-1.09 0-1.97-.88-1.97-1.97z"/><path d="m1109.52 128.71c0 42.95-30.35 77.88-80.17 77.88-49.819 0-80.169-34.93-80.169-77.88 0-42.9502 30.35-77.8802 80.169-77.8802 49.82 0 80.17 34.93 80.17 77.8802zm-45.81 0c0-21.19-11.74-38.9402-34.36-38.9402s-34.359 17.7502-34.359 38.9402 11.739 38.94 34.359 38.94 34.36-17.75 34.36-38.94z"/>
+        <path d="m293.781 50.8298c38.37 0 75.87 22.62 75.87 73.0102 0 4-.22 10.2-.66 14.56-.1 1-.95 1.76-1.96 1.76h-107.62c3.15 18.04 15.75 29.78 35.5 29.78 13.1 0 21.46-7.24 26.01-15.9.57-1.09 1.81-1.66 3.01-1.4l40.24 8.77c1.23.27 1.88 1.59 1.38 2.74-9.41 21.31-30.81 42.43-70.92 42.43-52.68 0-80.74-34.36-80.74-77.88 0-43.5202 29.2-77.8802 79.88-77.8802zm30.92 61.8502c-2-17.1802-13.46-26.3402-30.06-26.3402-21.76 0-30.92 11.17-34.36 26.3402z"/>
+        <path d="m383.4 200.04v-142.6502c0-1.09.88-1.97 1.97-1.97h41.87c1.09 0 1.97.88 1.97 1.97v16.9301c10.02-15.75 24.91-23.4801 44.09-23.4801 28.06 0 52.11 19.18 52.11 62.1302v87.07c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97v-80.49c0-19.18-10.02-29.7801-24.62-29.7801-15.75 0-25.77 10.3101-25.77 33.7901v76.48c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97z"/>
+        <path d="m528.22 55.4098h44.41c.87 0 1.63.57 1.89 1.4l33.36 110.5502 33.36-110.5502c.25-.83 1.02-1.4 1.89-1.4h44.41c1.36 0 2.32 1.35 1.85 2.64l-51.08 142.1302c-.39 1.09-1.43 1.83-2.6 1.83h-55.67c-1.16 0-2.2-.73-2.6-1.83l-51.08-142.1302c-.46-1.28.49-2.64 1.85-2.64z"/>
+        <path d="m786.541 200.04v-22.37c-7.16 14.89-23.19 28.92-48.1 28.92-28.92 0-50.39-18.32-50.39-44.09 0-27.2 18.04-47.53 57.55-47.53h22.91c12.6 0 16.03-9.16 14.89-15.1701-1.72-10.31-10.88-15.75-23.76-15.75-16.27 0-26.12 8.99-27.36 21.3701-.11 1.13-1.15 1.94-2.27 1.75l-38.84-6.47c-1.08-.18-1.82-1.2102-1.62-2.2802 6.33-33.79 38.37-47.58 71.25-47.58s69.29 8.02 69.29 68.7202v80.49c0 1.09-.88 1.97-1.97 1.97h-39.58c-1.09 0-1.97-.88-1.97-1.97zm-34.64-26.66c18.32 0 30.92-13.74 32.35-30.92h-27.77c-16.89 0-22.91 6.87-22.62 16.32.29 10.02 8.3 14.6 18.04 14.6z"/>
+        <path d="m836.94 90.0898v-32.71c0-1.09.88-1.97 1.97-1.97h16.35c7.59 0 13.74-6.15 13.74-13.74v-25.52c0-1.09.88-1.97 1.97-1.97h37.29c1.09 0 1.97.88 1.97 1.97v39.26h30.101c1.09 0 1.969.88 1.969 1.97v32.71c0 1.09-.879 1.97-1.969 1.97h-30.101v52.9702c0 17.26 14.67 24.29 29.99 18.85 1.02-.36 2.08.41 2.08 1.48v34.51c0 1.27-.859 2.39-2.089 2.68-3.96.94-9.451 1.75-15.941 1.75-35.5 0-59.84-12.03-59.84-63.56v-48.6702h-25.52c-1.09 0-1.97-.88-1.97-1.97z"/>
+        <path d="m1109.52 128.71c0 42.95-30.35 77.88-80.17 77.88-49.819 0-80.169-34.93-80.169-77.88 0-42.9502 30.35-77.8802 80.169-77.8802 49.82 0 80.17 34.93 80.17 77.8802zm-45.81 0c0-21.19-11.74-38.9402-34.36-38.9402s-34.359 17.7502-34.359 38.9402 11.739 38.94 34.359 38.94 34.36-17.75 34.36-38.94z"/>
       </g>
       <path d="m102.231 256.75c6.323 0 11.45-5.127 11.45-11.45 0-6.324-5.127-11.45-11.45-11.45-6.3239 0-11.4502 5.126-11.4502 11.45 0 6.323 5.1263 11.45 11.4502 11.45z" fill="#87e64b"/>
       <path d="m168.001 167.33-64.51 6.91c-1.18.13-1.79-1.38-.85-2.11l63.13-49.15c4.1-3.35 6.71-8.57 5.59-14.16-1.12-8.57-8.2-14.1601-17.14-13.0401l-68.5902 10.0401c-1.21.18-1.86-1.37-.89-2.11l67.9902-51.9101c13.42-10.43 14.53-30.9301 2.24-42.85005-11.18-11.18-29.07-10.80999-40.25.37001l-109.56021 111.42014c-4.1 4.47-5.959994 10.43-4.839994 16.77 1.860004 10.06 11.920004 16.77 21.990004 14.91l59.06-12.05c1.28-.26 1.98 1.45.87 2.15l-65.53 41.94c-8.2 5.22-11.92 14.53-9.32 23.85 2.61 12.3 14.91 19.38 26.83 16.4l97.9502-24.13c1.1-.27 1.91 1.01 1.2 1.89l-15.3 18.88c-4.1 5.22 2.61 12.3 8.2 8.2l50.31-41.36c8.94-7.45 2.98-21.99-8.57-20.87z" fill="#87e64b"/>
@@ -35,6 +47,66 @@ function EnvatoMarketLogo() {
       <path d="m1750.53 57.7302c31.49 0 64.41 20.33 64.41 68.4198 0 2.91-.17 5.46-.39 7.67-.1 1.01-.95 1.78-1.96 1.78h-112.45c2.58 31.2 22.62 51.53 51.24 51.53 23.2 0 37.08-13.86 42.91-28.21.36-.9 1.3-1.42 2.25-1.21l13.44 2.91c1.15.25 1.82 1.44 1.45 2.56-6.22 19.03-25.55 41.12-60.05 41.12-44.94 0-69.28-34.07-69.28-73.29 0-43.5098 28.06-73.2898 68.42-73.2898zm46.09 61.8298c-2-29.1998-20.61-45.7998-45.52-45.7998-27.77 0-44.94 15.17-50.38 45.7998z" fill="#fff5ed"/>
       <path d="m1815.8 74.0803v-12.09c0-1.09.88-1.97 1.97-1.97h12.92c7.59 0 13.74-6.15 13.74-13.74v-25.51c0-1.09.88-1.97 1.97-1.97h13.24c1.09 0 1.97.88 1.97 1.97v39.25h30.09c1.09 0 1.97.88 1.97 1.97v12.09c0 1.09-.88 1.97-1.97 1.97h-30.09v83.0197c0 27.92 16.87 29.41 29.6 26.17 1.25-.32 2.47.61 2.47 1.9v12.82c0 .9-.61 1.68-1.48 1.91-3.22.85-7.2 1.28-11.4 1.28-27.2 0-37.5-14.89-37.5-46.09v-81.0197h-25.51c-1.09 0-1.97-.88-1.97-1.97z" fill="#fff5ed"/>
     </svg>
+  );
+}
+
+function NavItem({ link }) {
+  const [open, setOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState(null);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+        setSubOpen(null);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  if (!link.dropdown) {
+    return <a href={link.href} className="nav-link">{link.label}</a>;
+  }
+
+  return (
+    <div className="nav-item" ref={ref}>
+      <a
+        href={link.href}
+        className="nav-link"
+        onClick={(e) => { e.preventDefault(); setOpen(o => !o); setSubOpen(null); }}
+      >
+        {link.label} <span style={{fontSize:'10px', marginLeft:'3px'}}>▾</span>
+      </a>
+      {open && (
+        <div className="nav-dropdown">
+          {link.dropdown.map((item, i) => (
+            <div
+              key={i}
+              className="nav-dropdown-item"
+              onMouseEnter={() => setSubOpen(item.children ? i : null)}
+            >
+              <a href={item.href}>
+                {item.label}
+                {item.children && (
+                  <span style={{fontSize:'10px', marginLeft:'auto'}}>›</span>
+                )}
+              </a>
+              {item.children && subOpen === i && (
+                <div className="nav-subdropdown">
+                  {item.children.map((child, j) => (
+                    <div key={j} className="nav-dropdown-item">
+                      <a href={child.href}>{child.label}</a>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -55,28 +127,15 @@ export default function Header() {
 
   return (
     <>
-      {/* ══ TOP BAR — black strip with Envato logo left, Buy Now right ══ */}
       <div className="top-bar">
-        <a
-          href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="top-bar-envato"
-          aria-label="View on Envato Market"
-        >
+        <a href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110" target="_blank" rel="noopener noreferrer" className="top-bar-envato" aria-label="View on Envato Market">
           <EnvatoMarketLogo />
         </a>
-        <a
-          href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="top-bar-buy"
-        >
+        <a href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110" target="_blank" rel="noopener noreferrer" className="top-bar-buy">
           Buy now
         </a>
       </div>
 
-      {/* ══ MAIN NAVBAR ══ */}
       <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
         <a href="#" className="header-logo" aria-label="Bliize Home">
           <Logo />
@@ -84,35 +143,26 @@ export default function Header() {
 
         <nav className="header-nav">
           {NAV_LINKS.map(link => (
-            <a key={link.label} href={link.href} className="nav-link">{link.label}</a>
+            <NavItem key={link.label} link={link} />
           ))}
         </nav>
 
         <div className="header-right">
           <i className="fas fa-search header-search" />
           <a href="#contact" className="header-contact-btn">Contact Now</a>
-          <button
-            className={`hamburger ${menuOpen ? 'active' : ''}`}
-            onClick={() => setMenuOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
+          <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
             <span /><span /><span />
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <nav className={`mob-menu ${menuOpen ? 'open' : ''}`}>
         {NAV_LINKS.map((link, i) => (
-          <a key={link.label} href={link.href}
-            style={{ transitionDelay: `${0.08 + i * 0.05}s` }}
-            onClick={() => setMenuOpen(false)}>
+          <a key={link.label} href={link.href} style={{ transitionDelay: `${0.08 + i * 0.05}s` }} onClick={() => setMenuOpen(false)}>
             {link.label}
           </a>
         ))}
-        <a href="#contact" style={{ transitionDelay: '0.33s' }} onClick={() => setMenuOpen(false)}>
-          Contact
-        </a>
+        <a href="#contact" style={{ transitionDelay: '0.33s' }} onClick={() => setMenuOpen(false)}>Contact</a>
       </nav>
       <div className={`mob-overlay ${menuOpen ? 'show' : ''}`} onClick={() => setMenuOpen(false)} />
     </>

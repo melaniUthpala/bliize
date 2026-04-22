@@ -46,11 +46,61 @@ export const IMAGES = {
 };
 
 export const NAV_LINKS = [
-  { label: 'Home',     href: '#' },
-  { label: 'Pages',    href: '#about' },
-  { label: 'Projects', href: '#works' },
-  { label: 'Shop',     href: '#services' },
-  { label: 'Blog',     href: '#blog' },
+  { label: 'Home', href: '#' },
+  {
+    label: 'Pages',
+    href: '#about',
+    dropdown: [
+      { label: 'About Us', href: '#about' },
+      { label: 'Services', href: '#services', children: [
+        { label: 'Services', href: '#services' },
+        { label: 'Service single', href: '#services' },
+      ]},
+      { label: 'Team', href: '#team', children: [
+        { label: 'Team', href: '#team' },
+        { label: 'Team single', href: '#team' },
+      ]},
+      { label: 'Pricing', href: '#' },
+      { label: 'Login', href: '#' },
+      { label: 'Contact Us', href: '#' },
+      { label: 'Privacy', href: '#' },
+      { label: 'Terms', href: '#' },
+      { label: '404 Error', href: '#' },
+    ],
+  },
+  {
+    label: 'Projects',
+    href: '#works',
+    dropdown: [
+      { label: 'Projects', href: '#works' },
+      { label: 'Projects Single', href: '#works' },
+    ],
+  },
+  {
+    label: 'Shop',
+    href: '#services',
+    dropdown: [
+      { label: 'Shop', href: '#' },
+      { label: 'Shop Single', href: '#' },
+      { label: 'Cart', href: '#' },
+      { label: 'Checkout', href: '#' },
+      { label: 'Wishlist', href: '#' },
+    ],
+  },
+  {
+    label: 'Blog',
+    href: '#blog',
+    dropdown: [
+      { label: 'Blog right sidebar', href: '#blog' },
+      { label: 'Blog left sidebar', href: '#blog' },
+      { label: 'Blog fullwidth', href: '#blog' },
+      { label: 'Blog details', href: '#blog', children: [
+        { label: 'Blog details right sidebar', href: '#blog' },
+        { label: 'Blog details left sidebar', href: '#blog' },
+        { label: 'Blog details fullwidth', href: '#blog' },
+      ]},
+    ],
+  },
 ];
 
 export const PROJECTS = [

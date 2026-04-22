@@ -53,29 +53,13 @@
 .tc:hover .tc-img img { transform:scale(1.04); }
 .tc h3 { font-family:var(--font-d); font-size:clamp(28px,3vw,42px); font-weight:400; margin-bottom:8px; letter-spacing:-0.5px; }
 .tc p { font-size:clamp(28px,3vw,42px); font-family:var(--font-d); font-weight:300; color:var(--gray); letter-spacing:-0.5px; }
-/* ── Partners ── */
-.partners-sec { padding:44px 70px; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; }
-.partners-track { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:30px; }
-.p-logo { display:flex; align-items:center; gap:10px; opacity:0.4; transition:opacity 0.3s; cursor:default; }
-.p-logo:hover { opacity:0.85; }
-.p-logo-text { display:flex; flex-direction:column; }
-.p-name { font-size:13px; letter-spacing:2px; text-transform:uppercase; font-weight:500; color:var(--black); line-height:1.2; }
-.p-sub { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-top:1px; }
 
-/* ── Blog ── */
-.blog-sec { padding:120px 70px; }
-.blog-head { margin-bottom:60px; }
-.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
-.bc-img { width:100%; aspect-ratio:4/3; overflow:hidden; margin-bottom:26px; }
-.bc-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s ease; display:block; }
-.bc:hover .bc-img img { transform:scale(1.06); }
-.bc-cat { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-bottom:12px; }
-.bc h3 { font-family:var(--font-d); font-size:22px; font-weight:400; line-height:1.3; margin-bottom:12px; transition:color 0.3s; }
-.bc:hover h3 { color:var(--accent); }
-.bc p { font-size:14px; color:#666; line-height:1.75; font-weight:300; }
-.bc-link { display:inline-flex; align-items:center; gap:10px; margin-top:18px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--black); transition:gap 0.3s; }
-.bc-link:hover { gap:18px; }
-.bc-link i { font-size:10px; }
+/* ── Partners / Brands ── */
+.partners-sec { padding:44px 70px; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; overflow:hidden; }
+.partners-track { display:flex; align-items:center; justify-content:space-between; transition:all 0.6s ease; }
+.p-logo { opacity:0.45; transition:opacity 0.3s, transform 0.6s ease; }
+.p-logo:hover { opacity:1; }
+.p-logo img { height:56px; width:auto; object-fit:contain; filter:grayscale(100%); }
 
 /* ── Footer ── */
 .site-footer { background:var(--black); color:var(--white); padding:90px 70px 40px; }
