@@ -66,7 +66,6 @@ export default function Hero() {
   const teamRef     = useRef(null);
   const scrollRef   = useRef(null);
   const counterRef  = useRef(null);
-  const navbarRef   = useRef(null);
 
   // ── Intro animation ──────────────────────────────────────────────
   useEffect(() => {
@@ -74,11 +73,8 @@ export default function Hero() {
 
     tl.from(bgRef.current, { scale: 1.12, duration: 2, ease: 'power2.out' });
 
-    tl.from(
-      navbarRef.current,
-      { opacity: 0, y: -20, duration: 0.6, ease: 'power3.out' },
-      '-=1.8'
-    );
+    
+    
 
     tl.to(
       [line1Ref.current, line2Ref.current, line3Ref.current],
@@ -138,54 +134,7 @@ export default function Hero() {
       </div>
       <div className="hero-overlay" />
 
-      {/* ── Navbar ─────────────────────────────────────────────── */}
-      <nav className="hero-navbar" ref={navbarRef}>
-
-        {/* Left: Envato Market logo + site logo stacked */}
-        <div className="hero-navbar-left">
-          <a
-            href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-envato-badge"
-            aria-label="View on Envato Market"
-          >
-            <EnvatoMarketLogo />
-          </a>
-
-          {/* Bliize site logo (replace with your <img> or logo component) */}
-          <div className="hero-site-logo">Bliize</div>
-        </div>
-
-        {/* Center: nav links */}
-        <ul className="hero-nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Pages</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-
-        {/* Right: search + contact + Buy Now */}
-        <div className="hero-navbar-right">
-          <button className="hero-nav-icon" aria-label="Search">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </button>
-
-          <a href="#contact" className="hero-contact-btn">Contact Now</a>
-
-          <a
-            href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-buy-btn"
-          >
-            Buy now
-          </a>
-        </div>
-      </nav>
+      
 
       {/* Slide counter — right side, vertically centred */}
       <div className="hero-counter" ref={counterRef}>

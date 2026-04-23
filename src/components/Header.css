@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 70px;
+  overflow: visible;
 }
 
 /* Envato Market logo link */
@@ -22,6 +23,7 @@
   text-decoration: none;
   opacity: 0.90;
   transition: opacity 0.2s;
+  overflow: visible;
 }
 .top-bar-envato:hover { opacity: 1; }
 
@@ -29,6 +31,7 @@
   height: 18px;
   width: auto;
   display: block;
+  overflow: visible;
 }
 
 /* Buy Now green button */
@@ -60,6 +63,7 @@
   position: fixed;
   top: 42px;               /* exactly top-bar height */
   left: 0;
+  height: 42px;
   width: 100%;
   z-index: 1000;
   padding: 28px 70px;
@@ -67,9 +71,11 @@
   align-items: center;
   justify-content: space-between;
   transition: all 0.5s ease;
+  overflow: visible;
 }
 .site-header.scrolled {
-  background: rgba(10,10,10,0.96);
+  top: 42px;
+  background: transparent;
   backdrop-filter: blur(12px);
   padding: 15px 70px;
   box-shadow: 0 2px 40px rgba(0,0,0,0.3);

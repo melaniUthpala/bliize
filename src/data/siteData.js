@@ -46,12 +46,12 @@ export const IMAGES = {
 };
 
 export const NAV_LINKS = [
-  { label: 'Home', href: '#' },
+{ label: 'Home', href: '#', page: 'gallery' },
   {
     label: 'Pages',
     href: '#about',
     dropdown: [
-      { label: 'About Us', href: '#about' },
+      { label: 'About Us', href: '#', page: 'about' },
       { label: 'Services', href: '#services', children: [
         { label: 'Services', href: '#services' },
         { label: 'Service single', href: '#services' },

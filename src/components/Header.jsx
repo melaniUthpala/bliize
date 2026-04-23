@@ -22,14 +22,7 @@ function Logo({ dark = false }) {
 
 function EnvatoMarketLogo() {
   return (
-    <svg
-      fill="none"
-      height="257"
-      viewBox="0 0 1894 257"
-      width="1894"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ height: '18px', width: 'auto' }}
-    >
+    <svg fill="none" height="257" viewBox="0 0 1894 257" width="1894" xmlns="http://www.w3.org/2000/svg" style={{ height: '18px', width: 'auto' }}>
       <g fill="#fff5ed">
         <path d="m293.781 50.8298c38.37 0 75.87 22.62 75.87 73.0102 0 4-.22 10.2-.66 14.56-.1 1-.95 1.76-1.96 1.76h-107.62c3.15 18.04 15.75 29.78 35.5 29.78 13.1 0 21.46-7.24 26.01-15.9.57-1.09 1.81-1.66 3.01-1.4l40.24 8.77c1.23.27 1.88 1.59 1.38 2.74-9.41 21.31-30.81 42.43-70.92 42.43-52.68 0-80.74-34.36-80.74-77.88 0-43.5202 29.2-77.8802 79.88-77.8802zm30.92 61.8502c-2-17.1802-13.46-26.3402-30.06-26.3402-21.76 0-30.92 11.17-34.36 26.3402z"/>
         <path d="m383.4 200.04v-142.6502c0-1.09.88-1.97 1.97-1.97h41.87c1.09 0 1.97.88 1.97 1.97v16.9301c10.02-15.75 24.91-23.4801 44.09-23.4801 28.06 0 52.11 19.18 52.11 62.1302v87.07c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97v-80.49c0-19.18-10.02-29.7801-24.62-29.7801-15.75 0-25.77 10.3101-25.77 33.7901v76.48c0 1.09-.88 1.97-1.97 1.97h-41.87c-1.09 0-1.97-.88-1.97-1.97z"/>
@@ -50,7 +43,7 @@ function EnvatoMarketLogo() {
   );
 }
 
-function NavItem({ link }) {
+function NavItem({ link, onNavigate }) {
   const [open, setOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(null);
   const ref = useRef(null);
@@ -66,19 +59,37 @@ function NavItem({ link }) {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // ✅ NO DROPDOWN
   if (!link.dropdown) {
-    return <a href={link.href} className="nav-link">{link.label}</a>;
-  }
-
-  return (
-    <div className="nav-item" ref={ref}>
+    return (
       <a
         href={link.href}
         className="nav-link"
-        onClick={(e) => { e.preventDefault(); setOpen(o => !o); setSubOpen(null); }}
+        onClick={(e) => {
+          if (link.page && onNavigate) {
+            e.preventDefault();
+            onNavigate(link.page);
+          }
+        }}
       >
-        {link.label} <span style={{fontSize:'10px', marginLeft:'3px'}}>▾</span>
+        {link.label}
       </a>
+    );
+  }
+
+  // ✅ WITH DROPDOWN
+  return (
+    <div
+      className="nav-item"
+      ref={ref}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => {
+        setOpen(false);
+        setSubOpen(null);
+      }}
+    >
+      <span className="nav-link">{link.label}</span>
+
       {open && (
         <div className="nav-dropdown">
           {link.dropdown.map((item, i) => (
@@ -87,12 +98,22 @@ function NavItem({ link }) {
               className="nav-dropdown-item"
               onMouseEnter={() => setSubOpen(item.children ? i : null)}
             >
-              <a href={item.href}>
+              <a
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (item.page && onNavigate) {
+                    onNavigate(item.page);
+                    setOpen(false);
+                  }
+                }}
+              >
                 {item.label}
                 {item.children && (
-                  <span style={{fontSize:'10px', marginLeft:'auto'}}>›</span>
+                  <span style={{ fontSize: '10px', marginLeft: 'auto' }}>{'>'}</span>
                 )}
               </a>
+
               {item.children && subOpen === i && (
                 <div className="nav-subdropdown">
                   {item.children.map((child, j) => (
@@ -109,8 +130,7 @@ function NavItem({ link }) {
     </div>
   );
 }
-
-export default function Header() {
+export default function Header({ onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -140,13 +160,11 @@ export default function Header() {
         <a href="#" className="header-logo" aria-label="Bliize Home">
           <Logo />
         </a>
-
         <nav className="header-nav">
           {NAV_LINKS.map(link => (
-            <NavItem key={link.label} link={link} />
+            <NavItem key={link.label} link={link} onNavigate={onNavigate} />
           ))}
         </nav>
-
         <div className="header-right">
           <i className="fas fa-search header-search" />
           <a href="#contact" className="header-contact-btn">Contact Now</a>

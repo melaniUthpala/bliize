@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Header from './components/Header';
-import Hero from './components/Hero'; // updated
+import Hero from './components/Hero';
 import About from './components/About';
 import Works from './components/Works';
 
@@ -13,7 +13,10 @@ import Testimonials from './components/Testimonials';
 import Team from './components/Team';
 import BrandSection from './components/brandSection';
 
-import { Footer } from './components/Footer'; // updated
+import AboutPage from './components/AboutPage';
+import HomeGallery from './components/HomeGallery'; // ✅ added
+
+import { Footer } from './components/Footer';
 
 import './index.css';
 import './App.css';
@@ -22,6 +25,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
+  const [page, setPage] = useState('home');
+
   const curDot = useRef(null);
   const curRing = useRef(null);
   const backTop = useRef(null);
@@ -129,17 +134,25 @@ export default function App() {
       <div ref={curDot} className="cursor-dot" />
       <div ref={curRing} className="cursor-ring" />
 
-      <Header />
+      <Header onNavigate={setPage} />
 
       <main>
-        <Hero />
-        <About />
-        <Works />
-        <Services />
-        <Stats />
-        <Testimonials />
-        <Team />
-       <BrandSection />
+        {page === 'home' ? (
+          <>
+            <Hero />
+            <About />
+            <Works />
+            <Services />
+            <Stats />
+            <Testimonials />
+            <Team />
+            <BrandSection />
+          </>
+        ) : page === 'about' ? (
+          <AboutPage />
+        ) : page === 'gallery' ? (   /* ✅ added */
+          <HomeGallery />
+        ) : null}
       </main>
 
       <Footer />
