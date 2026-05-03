@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Works from './components/Works';
-
 import Services from './components/Services';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
@@ -14,7 +13,28 @@ import Team from './components/Team';
 import BrandSection from './components/brandSection';
 
 import AboutPage from './components/AboutPage';
-import HomeGallery from './components/HomeGallery'; // ✅ added
+import HomeGallery from './components/HomeGallery';
+import SingleServicePage from './components/SingleServicePage';
+import ServiceSingle from './components/ServiceSingle';
+
+// ✅ NEW IMPORTS
+import TeamPage from './components/TeamPage';
+import TeamSinglePage from './components/TeamSinglePage';
+import Pricing from './components/Pricing';
+import Login from './components/Login';
+import Contactsus from './components/Contactsus';
+import Privacy from './components/Privacy';
+import TermsPage from './components/TermsPage';
+import NotFoundPage from './components/NotFoundPage';
+import Projectssingle from './components/Projectssingle';
+import Shop from './components/Shop';
+import ShopSingle from './components/ShopSingle';
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+import Wishlist from './components/Wishlist';
+import Blogrightsidebar from './components/Blogrightsidebar';
+import Blogleftsidebar from './components/Blogleftsidebar';
+import Blogfullwidth from './components/Blogfullwidth';
 
 import { Footer } from './components/Footer';
 
@@ -25,7 +45,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
-  const [page, setPage] = useState('home');
+  const [page, setPage] = useState('original-home');
 
   const curDot = useRef(null);
   const curRing = useRef(null);
@@ -64,12 +84,11 @@ export default function App() {
 
       if (curDot.current) {
         curDot.current.style.left = mx.current + 'px';
-        curDot.current.style.top = my.current + 'px';
+        curDot.current.style.top  = my.current + 'px';
       }
-
       if (curRing.current) {
         curRing.current.style.left = fx.current + 'px';
-        curRing.current.style.top = fy.current + 'px';
+        curRing.current.style.top  = fy.current + 'px';
       }
 
       raf = requestAnimationFrame(loop);
@@ -110,6 +129,10 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [loaded]);
 
+  const [pageType, pageSlug] = page.includes(':')
+    ? page.split(':')
+    : [page, null];
+
   return (
     <>
       {!loaded && (
@@ -131,13 +154,13 @@ export default function App() {
         </div>
       )}
 
-      <div ref={curDot} className="cursor-dot" />
+      <div ref={curDot}  className="cursor-dot"  />
       <div ref={curRing} className="cursor-ring" />
 
       <Header onNavigate={setPage} />
 
       <main>
-        {page === 'home' ? (
+        {pageType === 'original-home' ? (
           <>
             <Hero />
             <About />
@@ -148,11 +171,71 @@ export default function App() {
             <Team />
             <BrandSection />
           </>
-        ) : page === 'about' ? (
+        ) : pageType === 'home' ? (
+          <HomeGallery onNavigate={setPage} />
+        ) : pageType === 'about' ? (
           <AboutPage />
-        ) : page === 'gallery' ? (   /* ✅ added */
-          <HomeGallery />
-        ) : null}
+        ) : pageType === 'services' ? (
+          <SingleServicePage onNavigate={setPage} />
+        ) : pageType === 'service-single' ? (
+          <ServiceSingle onNavigate={setPage} />
+        ) : pageType === 'team' ? (
+          <TeamPage onNavigate={setPage} />
+        ) : pageType === 'team-single' ? (
+          <TeamSinglePage onNavigate={setPage} />
+        ) : pageType === 'pricing' ? (
+          <Pricing onNavigate={setPage} />
+        ) : pageType === 'login' ? (
+          <Login onNavigate={setPage} />
+        ) : pageType === 'contact' ? (
+          <Contactsus onNavigate={setPage} />
+        ) : pageType === 'privacy' ? (
+          <Privacy onNavigate={setPage} />
+        ) : pageType === 'terms' ? (
+          <TermsPage onNavigate={setPage} />
+        ) : pageType === '404' ? (
+          <NotFoundPage onNavigate={setPage} />
+        ) : pageType === 'projects' ? (
+          <Projectssingle onNavigate={setPage} />
+        ) : pageType === 'project-single' ? (
+          <Projectssingle onNavigate={setPage} />
+        ) : pageType === 'shop' ? (
+          <Shop onNavigate={setPage} />
+        ) : pageType === 'shop-single' ? (
+          <ShopSingle onNavigate={setPage} />
+        ) : pageType === 'cart' ? (
+          <Cart onNavigate={setPage} />
+        ) : pageType === 'checkout' ? (
+          <Checkout onNavigate={setPage} />
+        ) : pageType === 'wishlist' ? (
+          <Wishlist onNavigate={setPage} />
+        ) : pageType === 'blog-right' ? (
+          <Blogrightsidebar onNavigate={setPage} />
+        ) : pageType === 'blog-left' ? (
+          <Blogleftsidebar onNavigate={setPage} />
+        ) : pageType === 'blog-full' ? (
+          <Blogfullwidth onNavigate={setPage} />
+        ) : pageType === 'blog-details' ? (
+          <Blogrightsidebar onNavigate={setPage} />
+        ) : pageType === 'blog-details-right' ? (
+          <Blogrightsidebar onNavigate={setPage} />
+        ) : pageType === 'blog-details-left' ? (
+          <Blogleftsidebar onNavigate={setPage} />
+        ) : pageType === 'blog-details-full' ? (
+          <Blogfullwidth onNavigate={setPage} />
+        ) : (
+          <div style={{
+            minHeight: '60vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingTop: '160px',
+            fontFamily: 'sans-serif',
+            color: '#555'
+          }}>
+            <h2>Page: <strong>{page}</strong> — coming soon</h2>
+          </div>
+        )}
       </main>
 
       <Footer />

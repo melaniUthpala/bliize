@@ -46,63 +46,62 @@ export const IMAGES = {
 };
 
 export const NAV_LINKS = [
-{ label: 'Home', href: '#', page: 'gallery' },
+  { label: 'Home', href: '#', page: 'home' },
   {
     label: 'Pages',
-    href: '#about',
+    href: '#',
     dropdown: [
-      { label: 'About Us', href: '#', page: 'about' },
-      { label: 'Services', href: '#services', children: [
-        { label: 'Services', href: '#services' },
-        { label: 'Service single', href: '#services' },
+      { label: 'About Us',   href: '#', page: 'about' },
+      { label: 'Services',   href: '#', children: [
+        { label: 'Services',       href: '#', page: 'services' },
+        { label: 'Service Single', href: '#', page: 'service-single' },
       ]},
-      { label: 'Team', href: '#team', children: [
-        { label: 'Team', href: '#team' },
-        { label: 'Team single', href: '#team' },
+      { label: 'Team',       href: '#', children: [
+        { label: 'Team',        href: '#', page: 'team' },
+        { label: 'Team Single', href: '#', page: 'team-single' },
       ]},
-      { label: 'Pricing', href: '#' },
-      { label: 'Login', href: '#' },
-      { label: 'Contact Us', href: '#' },
-      { label: 'Privacy', href: '#' },
-      { label: 'Terms', href: '#' },
-      { label: '404 Error', href: '#' },
+      { label: 'Pricing',    href: '#', page: 'pricing' },
+      { label: 'Login',      href: '#', page: 'login' },
+      { label: 'Contact Us', href: '#', page: 'contact' },
+      { label: 'Privacy',    href: '#', page: 'privacy' },
+      { label: 'Terms',      href: '#', page: 'terms' },
+      { label: '404 Error',  href: '#', page: '404' },
     ],
   },
   {
     label: 'Projects',
-    href: '#works',
+    href: '#',
     dropdown: [
-      { label: 'Projects', href: '#works' },
-      { label: 'Projects Single', href: '#works' },
+      { label: 'Projects',        href: '#', page: 'projects' },
+      { label: 'Projects Single', href: '#', page: 'project-single' },
     ],
   },
   {
     label: 'Shop',
-    href: '#services',
+    href: '#',
     dropdown: [
-      { label: 'Shop', href: '#' },
-      { label: 'Shop Single', href: '#' },
-      { label: 'Cart', href: '#' },
-      { label: 'Checkout', href: '#' },
-      { label: 'Wishlist', href: '#' },
+      { label: 'Shop',        href: '#', page: 'shop' },
+      { label: 'Shop Single', href: '#', page: 'shop-single' },
+      { label: 'Cart',        href: '#', page: 'cart' },
+      { label: 'Checkout',    href: '#', page: 'checkout' },
+      { label: 'Wishlist',    href: '#', page: 'wishlist' },
     ],
   },
   {
     label: 'Blog',
-    href: '#blog',
+    href: '#',
     dropdown: [
-      { label: 'Blog right sidebar', href: '#blog' },
-      { label: 'Blog left sidebar', href: '#blog' },
-      { label: 'Blog fullwidth', href: '#blog' },
-      { label: 'Blog details', href: '#blog', children: [
-        { label: 'Blog details right sidebar', href: '#blog' },
-        { label: 'Blog details left sidebar', href: '#blog' },
-        { label: 'Blog details fullwidth', href: '#blog' },
+      { label: 'Blog right sidebar', href: '#', page: 'blog-right' },
+      { label: 'Blog left sidebar',  href: '#', page: 'blog-left' },
+      { label: 'Blog fullwidth',     href: '#', page: 'blog-full' },
+      { label: 'Blog details',       href: '#', page: 'blog-details', children: [
+        { label: 'Blog details right sidebar', href: '#', page: 'blog-details-right' },
+        { label: 'Blog details left sidebar',  href: '#', page: 'blog-details-left' },
+        { label: 'Blog details fullwidth',     href: '#', page: 'blog-details-full' },
       ]},
     ],
   },
 ];
-
 export const PROJECTS = [
   { id:1, title:'Modern House In UK',  cat:'Building, Apartment', img: IMAGES.project1 },
   { id:2, title:'Art Museum In Dubai', cat:'Building, Apartment', img: IMAGES.project2 },

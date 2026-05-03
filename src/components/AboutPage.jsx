@@ -1,5 +1,6 @@
 import './Sections.css';
 import About from './About'; // ✅ added
+import BrandSection from './BrandSection';
 
 export default function AboutPage() {
   return (
@@ -13,6 +14,8 @@ export default function AboutPage() {
 
       {/* ✅ added About section at bottom */}
       <About />
+      
+      <BrandSection />
     </>
   );
 }

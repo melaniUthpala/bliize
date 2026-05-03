@@ -59,10 +59,9 @@ function NavItem({ link, onNavigate }) {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // ✅ NO DROPDOWN
   if (!link.dropdown) {
     return (
-      <a
+      
         href={link.href}
         className="nav-link"
         onClick={(e) => {
@@ -77,7 +76,6 @@ function NavItem({ link, onNavigate }) {
     );
   }
 
-  // ✅ WITH DROPDOWN
   return (
     <div
       className="nav-item"
@@ -90,6 +88,8 @@ function NavItem({ link, onNavigate }) {
     >
       <span className="nav-link">{link.label}</span>
 
+      {open && <div className="nav-dropdown-bridge" />}
+
       {open && (
         <div className="nav-dropdown">
           {link.dropdown.map((item, i) => (
@@ -98,19 +98,20 @@ function NavItem({ link, onNavigate }) {
               className="nav-dropdown-item"
               onMouseEnter={() => setSubOpen(item.children ? i : null)}
             >
-              <a
+              
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
                   if (item.page && onNavigate) {
                     onNavigate(item.page);
                     setOpen(false);
+                    setSubOpen(null);
                   }
                 }}
               >
                 {item.label}
                 {item.children && (
-                  <span style={{ fontSize: '10px', marginLeft: 'auto' }}>{'>'}</span>
+                  <span style={{ fontSize: '10px', marginLeft: 'auto' }}>▶</span>
                 )}
               </a>
 
@@ -118,7 +119,19 @@ function NavItem({ link, onNavigate }) {
                 <div className="nav-subdropdown">
                   {item.children.map((child, j) => (
                     <div key={j} className="nav-dropdown-item">
-                      <a href={child.href}>{child.label}</a>
+                      
+                        href={child.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (child.page && onNavigate) {
+                            onNavigate(child.page);
+                            setOpen(false);
+                            setSubOpen(null);
+                          }
+                        }}
+                      >
+                        {child.label}
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -130,6 +143,7 @@ function NavItem({ link, onNavigate }) {
     </div>
   );
 }
+
 export default function Header({ onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -147,17 +161,49 @@ export default function Header({ onNavigate }) {
 
   return (
     <>
-      <div className="top-bar">
-        <a href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110" target="_blank" rel="noopener noreferrer" className="top-bar-envato" aria-label="View on Envato Market">
+      <div className="top-bar-envato-row">
+        
+          href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
+          target="_blank" rel="noopener noreferrer"
+          className="top-bar-envato-link"
+          aria-label="View on Envato Market"
+        >
           <EnvatoMarketLogo />
         </a>
-        <a href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110" target="_blank" rel="noopener noreferrer" className="top-bar-buy">
+        
+          href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
+          target="_blank" rel="noopener noreferrer"
+          className="top-bar-buy"
+        >
           Buy now
         </a>
       </div>
 
+      <div className="top-bar-info-row">
+        <div className="top-bar-left">
+          <span className="top-bar-item">
+            <i className="fas fa-phone" /> Call Us: +869 968 236
+          </span>
+          <span className="top-bar-divider">|</span>
+          <span className="top-bar-item">
+            <i className="fas fa-envelope" /> Email Us: bliize@gmail.com
+          </span>
+        </div>
+        <div className="top-bar-right">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="top-bar-social" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="top-bar-social" aria-label="Twitter"><i className="fab fa-twitter" /></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="top-bar-social" aria-label="LinkedIn"><i className="fab fa-linkedin-in" /></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="top-bar-social" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+        </div>
+      </div>
+
       <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-        <a href="#" className="header-logo" aria-label="Bliize Home">
+        
+          href="#"
+          className="header-logo"
+          aria-label="Bliize Home"
+          onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
+        >
           <Logo />
         </a>
         <nav className="header-nav">
@@ -168,20 +214,82 @@ export default function Header({ onNavigate }) {
         <div className="header-right">
           <i className="fas fa-search header-search" />
           <a href="#contact" className="header-contact-btn">Contact Now</a>
-          <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
+          <button
+            className={`hamburger ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
             <span /><span /><span />
           </button>
         </div>
       </header>
 
+      {/* ✅ MOBILE MENU — updated */}
       <nav className={`mob-menu ${menuOpen ? 'open' : ''}`}>
         {NAV_LINKS.map((link, i) => (
-          <a key={link.label} href={link.href} style={{ transitionDelay: `${0.08 + i * 0.05}s` }} onClick={() => setMenuOpen(false)}>
-            {link.label}
-          </a>
+          <div
+            key={link.label}
+            className="mob-menu-item"
+            style={{ transitionDelay: `${0.08 + i * 0.05}s` }}
+          >
+            
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                if (link.page && onNavigate) {
+                  onNavigate(link.page);
+                  setMenuOpen(false);
+                }
+              }}
+            >
+              {link.label}
+            </a>
+
+            {link.dropdown && link.dropdown.map((item, j) => (
+              <div key={j}>
+                
+                  href={item.href}
+                  className="mob-sub-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.page && onNavigate) {
+                      onNavigate(item.page);
+                      setMenuOpen(false);
+                    }
+                  }}
+                >
+                  — {item.label}
+                </a>
+
+                {item.children && item.children.map((child, k) => (
+                  
+                    key={k}
+                    href={child.href}
+                    className="mob-subsub-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (child.page && onNavigate) {
+                        onNavigate(child.page);
+                        setMenuOpen(false);
+                      }
+                    }}
+                  >
+                    — {child.label}
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
         ))}
-        <a href="#contact" style={{ transitionDelay: '0.33s' }} onClick={() => setMenuOpen(false)}>Contact</a>
+        
+          href="#contact"
+          style={{ transitionDelay: '0.33s' }}
+          onClick={() => setMenuOpen(false)}
+        >
+          Contact
+        </a>
       </nav>
+
       <div className={`mob-overlay ${menuOpen ? 'show' : ''}`} onClick={() => setMenuOpen(false)} />
     </>
   );
