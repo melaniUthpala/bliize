@@ -294,10 +294,15 @@
   z-index: 1000;
 }
 
-/* ── Mobile menu updated ── */
+/* ══════════════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════════════ */
 .mob-menu {
-  position: fixed; top: 0; left: -100%;
-  width: 80%; max-width: 360px;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  max-width: 360px;
   height: 100vh;
   background: #0a0a0a;
   z-index: 1500;
@@ -309,43 +314,71 @@
 }
 .mob-menu.open { left: 0; }
 
+/* top level item wrapper */
 .mob-menu-item {
   opacity: 0;
   transform: translateX(-28px);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .mob-menu.open .mob-menu-item {
   opacity: 1;
   transform: translateX(0);
 }
 
+/* all links inside mob-menu */
 .mob-menu a {
   font-family: var(--font-d);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 300;
   color: #fff;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 10px 0;
+  padding: 12px 0;
   display: block;
   text-decoration: none;
   transition: color 0.3s;
+  border-bottom: none;
+  opacity: 1;
+  transform: none;
 }
 .mob-menu a:hover { color: #87e64b; }
 
+/* Contact link at bottom */
+.mob-menu > a {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.mob-menu.open > a {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* sub dropdown links */
 .mob-sub-link {
   font-size: 16px !important;
-  padding: 7px 0 7px 20px !important;
-  opacity: 0.7;
-  border-bottom: none !important;
+  padding: 7px 0 7px 16px !important;
+  color: rgba(255,255,255,0.65) !important;
 }
 
+/* sub-sub dropdown links */
 .mob-subsub-link {
   font-size: 13px !important;
-  padding: 5px 0 5px 40px !important;
-  opacity: 0.5;
-  border-bottom: none !important;
+  padding: 5px 0 5px 32px !important;
+  color: rgba(255,255,255,0.45) !important;
 }
 
+.mob-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1400;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.mob-overlay.show { opacity: 1; pointer-events: all; }
 /* ══════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════ */

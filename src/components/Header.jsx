@@ -61,7 +61,7 @@ function NavItem({ link, onNavigate }) {
 
   if (!link.dropdown) {
     return (
-      
+      <a
         href={link.href}
         className="nav-link"
         onClick={(e) => {
@@ -98,7 +98,7 @@ function NavItem({ link, onNavigate }) {
               className="nav-dropdown-item"
               onMouseEnter={() => setSubOpen(item.children ? i : null)}
             >
-              
+              <a
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
@@ -119,7 +119,7 @@ function NavItem({ link, onNavigate }) {
                 <div className="nav-subdropdown">
                   {item.children.map((child, j) => (
                     <div key={j} className="nav-dropdown-item">
-                      
+                      <a
                         href={child.href}
                         onClick={(e) => {
                           e.preventDefault();
@@ -162,7 +162,7 @@ export default function Header({ onNavigate }) {
   return (
     <>
       <div className="top-bar-envato-row">
-        
+        <a
           href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
           target="_blank" rel="noopener noreferrer"
           className="top-bar-envato-link"
@@ -170,7 +170,7 @@ export default function Header({ onNavigate }) {
         >
           <EnvatoMarketLogo />
         </a>
-        
+        <a
           href="https://themeforest.net/item/bliize-architecture-construction-next-js-template/57988110"
           target="_blank" rel="noopener noreferrer"
           className="top-bar-buy"
@@ -198,7 +198,7 @@ export default function Header({ onNavigate }) {
       </div>
 
       <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-        
+        <a
           href="#"
           className="header-logo"
           aria-label="Bliize Home"
@@ -224,7 +224,6 @@ export default function Header({ onNavigate }) {
         </div>
       </header>
 
-      {/* ✅ MOBILE MENU — updated */}
       <nav className={`mob-menu ${menuOpen ? 'open' : ''}`}>
         {NAV_LINKS.map((link, i) => (
           <div
@@ -232,7 +231,7 @@ export default function Header({ onNavigate }) {
             className="mob-menu-item"
             style={{ transitionDelay: `${0.08 + i * 0.05}s` }}
           >
-            
+            <a
               href={link.href}
               onClick={(e) => {
                 e.preventDefault();
@@ -247,7 +246,7 @@ export default function Header({ onNavigate }) {
 
             {link.dropdown && link.dropdown.map((item, j) => (
               <div key={j}>
-                
+                <a
                   href={item.href}
                   className="mob-sub-link"
                   onClick={(e) => {
@@ -262,7 +261,7 @@ export default function Header({ onNavigate }) {
                 </a>
 
                 {item.children && item.children.map((child, k) => (
-                  
+                  <a
                     key={k}
                     href={child.href}
                     className="mob-subsub-link"
@@ -281,7 +280,7 @@ export default function Header({ onNavigate }) {
             ))}
           </div>
         ))}
-        
+        <a
           href="#contact"
           style={{ transitionDelay: '0.33s' }}
           onClick={() => setMenuOpen(false)}
